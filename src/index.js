@@ -1,4 +1,9 @@
- function add (a, b) {
-  return a + b;
+/**
+ * @flow
+ */
+
+function add (a: number, b: number): number {
+  return a + b
 }
- export {add}
+
+export { add }
