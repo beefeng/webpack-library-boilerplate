@@ -7,9 +7,6 @@ const srcPath = path.resolve(__dirname, './src')
 module.exports = function (config) {
   config.set({
 
-    // base path that will be used to resolve all patterns (eg. files, exclude)
-    basePath: './',
-
     // frameworks to use
     // available frameworks: https://npmjs.org/browse/keyword/karma-adapter
     frameworks: ['mocha', 'chai'],
@@ -32,7 +29,7 @@ module.exports = function (config) {
     // test results reporter to use
     // possible values: 'dots', 'progress'
     // available reporters: https://npmjs.org/browse/keyword/karma-reporter
-    reporters: ['progress', 'coverage-istanbul'],
+    reporters: ['spec', 'coverage-istanbul'],
     coverageReporter: {
       type: 'html',
       dir: 'build/coverage/'
@@ -53,7 +50,7 @@ module.exports = function (config) {
 
     // start these browsers
     // available browser launchers: https://npmjs.org/browse/keyword/karma-launcher
-    browsers: ['Chrome'],
+    browsers: ['PhantomJS'],
 
     // Continuous Integration mode
     // if true, Karma captures browsers, runs the tests and exits
@@ -65,7 +62,6 @@ module.exports = function (config) {
 
     //webpack 配置
     webpack: {
-      devtool: 'inline-source-map',
       module: {
         rules: [
           {
@@ -92,7 +88,7 @@ module.exports = function (config) {
     // 配置代码覆盖率插件
     coverageIstanbulReporter: {
       // 以什么格式, 这里设置了输出 html文件 ,info文件 ,及控制台
-      reports: ['html', 'lcovonly', 'text-summary'],
+      reports: ['html', 'text', 'text-summary'],
       // 将文件输出路径定位
       dir: path.join(__dirname, 'coverage'),
       // 修正 weback 路径（翻译了是这个意思）
@@ -118,8 +114,10 @@ module.exports = function (config) {
       'karma-chai',
       'karma-chrome-launcher',
       'karma-phantomjs-launcher',
+      'istanbul-instrumenter-loader',
       'karma-sourcemap-loader',
       'karma-babel-preprocessor',
+      'karma-spec-reporter',
       'karma-coverage-istanbul-reporter'
     ]
   })
